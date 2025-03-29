@@ -188,6 +188,14 @@ export default function Home() {
                 </motion.button>
               </motion.div>
             ))}
+            <motion.a
+              href="https://wa.me/+918712326333"
+              className="bg-blue-600 text-white px-6 py-2 rounded-full shadow-lg font-semibold text-sm hover:bg-blue-700 transition duration-300 ease-in-out"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Book Now
+            </motion.a>
           </div>
 
           <motion.button
@@ -288,7 +296,9 @@ export default function Home() {
                 </motion.button>
               </motion.div>
             </motion.div>
+
           )}
+
         </AnimatePresence>
       </motion.nav>
 
@@ -372,7 +382,7 @@ export default function Home() {
                 <motion.a
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  href="https://wa.me/8712326333"
+                  href="https://wa.me/+918712326333"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center space-x-2 bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded-lg transition-all shadow-lg hover:shadow-green-200"
@@ -423,6 +433,7 @@ export default function Home() {
                 className="absolute -bottom-4 -left-4 w-16 h-16 bg-blue-50 rounded-lg z-0"
               />
             </motion.div>
+
           </div>
 
           {/* Floating bubbles */}
@@ -451,6 +462,14 @@ export default function Home() {
           />
         </div>
       </section>
+      <motion.div
+        initial={{ opacity: 0, y: 0 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 1 }}
+        className="fixed left-1/3 transform -translate-x-1/2 bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 text-center"
+      >
+        🎉 First-Time Customers Get a Flat 2025 Discount! 🎉
+      </motion.div>
 
       {/* About Section with Enhanced Animations */}
       <section id="about" className="py-16 bg-gray-50 relative overflow-hidden">
@@ -730,7 +749,7 @@ export default function Home() {
                   <motion.a
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    href={`https://wa.me/8712326333?text=I'm%20interested%20in%20the%20${encodeURIComponent(
+                    href={`https://wa.me/+918712326333?text=I'm%20interested%20in%20the%20${encodeURIComponent(
                       service.title
                     )}%20service%20from%20WashMyClothes`}
                     target="_blank"
@@ -980,7 +999,7 @@ export default function Home() {
                   <motion.a
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    href="https://maps.google.com"
+                    href="https://maps.app.goo.gl/wed8GEyp1khPVWvt9?g_st=awb"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center space-x-2 bg-white hover:bg-gray-100 text-gray-700 border border-gray-300 py-3 px-6 rounded-lg transition-colors shadow-md"
