@@ -672,7 +672,7 @@ export default function Home() {
             {[
               {
                 title: "Wash & Fold",
-                price: "From $1.50/lb",
+                price: "From ₹150/lb",
                 description:
                   "Convenient and affordable wash & fold service for your everyday laundry. Fresh, clean, and ready to wear.",
                 image: "/images/wash-fold.jpg",
@@ -680,7 +680,7 @@ export default function Home() {
               },
               {
                 title: "Wash & Steam Iron",
-                price: "From $3.00/item",
+                price: "From ₹300/item",
                 description:
                   "Get your clothes professionally washed and steam ironed for a crisp, wrinkle-free finish.",
                 image: "/images/wash-steam-iron.jpg",
@@ -688,7 +688,7 @@ export default function Home() {
               },
               {
                 title: "Premium Laundry",
-                price: "From $4.00/lb",
+                price: "From ₹400/lb",
                 description:
                   "Special care for your delicate fabrics with premium detergents and expert handling.",
                 image: "/images/premium-laundry.jpg",
@@ -696,7 +696,7 @@ export default function Home() {
               },
               {
                 title: "Express Laundry",
-                price: "Additional $10",
+                price: "Additional  ₹100",
                 description:
                   "Need your laundry done fast? Our express service guarantees same-day delivery.",
                 image: "/images/express-laundry.jpg",
@@ -704,7 +704,7 @@ export default function Home() {
               },
               {
                 title: "Dry Cleaning",
-                price: "From $5.00/item",
+                price: "From  ₹100/item",
                 description:
                   "Professional dry cleaning to keep your delicate garments looking brand new.",
                 image: "/images/dry-cleaning.jpg",
@@ -712,7 +712,7 @@ export default function Home() {
               },
               {
                 title: "Steam Press",
-                price: "From $2.50/item",
+                price: "From  ₹250/item",
                 description:
                   "Give your clothes a polished look with our high-quality steam press service.",
                 image: "/images/steam-press.jpg",
