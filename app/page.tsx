@@ -13,7 +13,16 @@ export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const navItems = ["home", "about", "services", "location", "contact"]
+  const handleClaimNow = () => {
+    const phoneNumber = "+918712326333"; // Replace with your phone number
 
+    const message = "I'd like to claim my 25% discount!";
+
+    // Create WhatsApp URL with encoded message
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+    window.open(whatsappUrl, '_blank');
+  };
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -463,14 +472,23 @@ export default function Home() {
         </div>
       </section>
       <motion.div
-        initial={{ opacity: 0, y: 0 }}
+        initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 1 }}
-        className="fixed left-1/3 transform -translate-x-1/2 bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 text-center"
+        className="fixed left-1/3 transform -translate-x-1/2 bg-blue-600 text-white px-5 py-2 rounded-lg shadow-lg z-50 text-center"
       >
-        🎉 First-Time Customers Get a Flat 2025 Discount! 🎉
+        <div className="flex flex-row items-center">
+          <div className="mb-1">
+            🎉 First-Time Customers Get a Flat 25% Discount! 🎉
+          </div>
+          <button
+            onClick={handleClaimNow}
+            className="bg-white text-blue-600 px-3 py-2 rounded-md font-bold hover:bg-blue-100 transition-colors duration-200"
+          >
+            Claim Now
+          </button>
+        </div>
       </motion.div>
-
       {/* About Section with Enhanced Animations */}
       <section id="about" className="py-16 bg-gray-50 relative overflow-hidden">
         {/* Background pattern */}
@@ -756,7 +774,7 @@ export default function Home() {
                     rel="noopener noreferrer"
                     className={`mt-5 inline-flex items-center text-${service.color}-600 font-medium`}
                   >
-                    Learn more
+                    Book Now
                     <svg
                       className="w-4 h-4 ml-1"
                       viewBox="0 0 24 24"
@@ -825,7 +843,7 @@ export default function Home() {
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.2 }}
                 >
-                  WASHCLOTHES20
+                  WASHCLOTHES25
                 </motion.span>{" "}
                 when you visit.
               </motion.p>
@@ -844,7 +862,7 @@ export default function Home() {
                   className="flex items-center justify-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white py-3 px-8 rounded-lg transition-colors shadow-lg hover:shadow-blue-200"
                 >
                   <Phone size={20} />
-                  <span>Call to Redeem</span>
+                  <span>Book your First order</span>
                 </motion.a>
               </motion.div>
             </motion.div>
