@@ -3,11 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Search } from 'lucide-react';
 
 const PricingSection = () => {
-    // State for the active tab
+
     const [activeTab, setActiveTab] = useState('laundry');
     const [searchTerm, setSearchTerm] = useState('');
 
-    // Price data from the provided details
     const priceData = {
         laundry: {
             title: "Laundry Services",
@@ -123,7 +122,6 @@ const PricingSection = () => {
         }
     };
 
-    // Function to filter items based on search term
     const filteredItems = () => {
         const items = priceData[activeTab].items;
         if (!searchTerm) return items;
@@ -181,7 +179,7 @@ const PricingSection = () => {
                     </motion.p>
                 </motion.div>
 
-                {/* Tab Navigation */}
+             
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -223,7 +221,7 @@ const PricingSection = () => {
                     </div>
                 </motion.div>
 
-                {/* Price Table */}
+              
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={activeTab}

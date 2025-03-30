@@ -1095,7 +1095,7 @@ export default function Home() {
             {[
               {
                 title: "Wash & Fold",
-                price: "From ₹150/kg",
+                price: "From ₹60/kg",
                 description:
                   "Convenient and affordable wash & fold service for your everyday laundry. Fresh, clean, and neatly folded.",
                 image: "/images/wash-fold.jpg",
@@ -1105,7 +1105,7 @@ export default function Home() {
               },
               {
                 title: "Wash & Steam Iron",
-                price: "From ₹300/item",
+                price: "From ₹99/item",
                 description:
                   "Professional wash and steam iron service for a crisp, wrinkle-free finish, perfect for office wear and special occasions.",
                 image: "/images/wash-steam-iron.jpg",
@@ -1115,7 +1115,7 @@ export default function Home() {
               },
               {
                 title: "Dry Cleaning",
-                price: "From ₹100/item",
+                price: "From ₹60/item",
                 description:
                   "Expert dry cleaning service to maintain the quality and longevity of your delicate and high-end fabrics.",
                 image: "/images/dry-cleaning.jpg",
@@ -1125,7 +1125,7 @@ export default function Home() {
               },
               {
                 title: "Shoe Cleaning",
-                price: "From ₹250/pair",
+                price: "From ₹350/pair",
                 description:
                   "Restore the look of your favorite shoes with deep cleaning, stain removal, and expert care.",
                 image: "/images/shoe-cleaning.jpg",
@@ -1135,7 +1135,17 @@ export default function Home() {
               },
               {
                 title: "Curtain Cleaning",
-                price: "From ₹500/set",
+                price: "From ₹8/- Sqft (Single Layer)",
+                description:
+                  "Freshen up your home with our professional curtain cleaning service, removing dust, stains, and odors.",
+                image: "/images/curtain-cleaning.jpg",
+                icon: "🪟",
+                color: "amber",
+                gradient: "from-amber-500 to-amber-600"
+              },
+              {
+                title: "Curtain Cleaning",
+                price: "From ₹15/- Sqft (Double Layer)",
                 description:
                   "Freshen up your home with our professional curtain cleaning service, removing dust, stains, and odors.",
                 image: "/images/curtain-cleaning.jpg",
@@ -1145,7 +1155,7 @@ export default function Home() {
               },
               {
                 title: "Carpet Cleaning",
-                price: "From ₹800/sq.m",
+                price: "From ₹45/- Sqft",
                 description:
                   "Deep cleaning and stain removal for carpets to keep your space fresh, hygienic, and allergen-free.",
                 image: "/images/carpet-cleaning.jpg",
@@ -1155,7 +1165,7 @@ export default function Home() {
               },
               {
                 title: "Toy Cleaning",
-                price: "From ₹200/item",
+                price: "From ₹250/item",
                 description:
                   "Sanitize and refresh your child's toys with our specialized cleaning service, ensuring hygiene and safety.",
                 image: "/images/toy-cleaning.jpg",
