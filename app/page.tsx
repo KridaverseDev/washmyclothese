@@ -7,7 +7,7 @@ import { Phone, MessageSquare, MapPin, Clock, ChevronUp, PlayCircle, Menu, X, Fa
 import { motion, AnimatePresence } from "framer-motion"
 import logo from "@/assets/app_logo.jpeg"
 import image from "@/assets/image.png"
-
+import PricingSection from "./componets/pricing"
 export default function Home() {
   const [activeSection, setActiveSection] = useState("home")
   const [isScrolled, setIsScrolled] = useState(false)
@@ -229,7 +229,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-white">
-      {/* Navigation Bar */}
+
       <motion.nav
         className="fixed top-0 left-0 right-0 z-50 flex items-center"
         initial="transparent"
@@ -884,7 +884,7 @@ export default function Home() {
                   </motion.div>
                 </div>
 
-                {/* Enhanced call-to-action button */}
+
                 <motion.button
                   whileHover={{ scale: 1.05, backgroundColor: "#f8fafc" }}
                   whileTap={{ scale: 0.95 }}
@@ -904,7 +904,7 @@ export default function Home() {
                   onClick={() => setToastVisible(false)}
                   className="absolute -top-1 -right-1 w-6 h-6 rounded-full flex items-center justify-center text-white hover:bg-white/10 transition-colors"
                 >
-                  <svg className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                  <svg className="w-4 h-4" viewBox="0 0 20 20" fill="black">
                     <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
                   </svg>
                 </motion.button>
@@ -1504,6 +1504,8 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+      {/* service pricing */}
+      <PricingSection />
       <section id="faq" className="py-20 md:py-24 bg-gradient-to-b from-white to-blue-50 relative overflow-hidden">
         {/* Background decorative elements */}
         <div className="absolute inset-0 overflow-hidden">
@@ -2715,8 +2717,8 @@ export default function Home() {
                     <h4 className="font-medium text-blue-300 mb-5 text-lg">Connect With Us</h4>
                     <div className="flex gap-4">
                       {[
-                        { icon: <Facebook size={20} />, url: "https://facebook.com", color: "from-blue-500 to-blue-600" },
-                        { icon: <Instagram size={20} />, url: "https://instagram.com", color: "from-purple-500 to-pink-500" },
+                        { icon: <Facebook size={20} />, url: "https://www.facebook.com/Washmyclothes.co.in/", color: "from-blue-500 to-blue-600" },
+                        { icon: <Instagram size={20} />, url: "https://www.instagram.com/wash_my_clothes?utm_source=qr&igsh=MWt3NXJ2OTE1a2x6bA==", color: "from-purple-500 to-pink-500" },
                         { icon: <Twitter size={20} />, url: "https://twitter.com", color: "from-blue-400 to-blue-500" },
                         { icon: <Mail size={20} />, url: "mailto:washmyclotheshyd@gmail.com", color: "from-red-500 to-red-600" },
                       ].map((social, index) => (
@@ -2851,8 +2853,8 @@ export default function Home() {
                 className="flex space-x-3"
               >
                 {[
-                  { icon: <Facebook size={18} />, url: "https://facebook.com", color: "from-blue-500 to-blue-600" },
-                  { icon: <Instagram size={18} />, url: "https://instagram.com", color: "from-pink-500 to-purple-500" },
+                  { icon: <Facebook size={18} />, url: "https://www.facebook.com/Washmyclothes.co.in/", color: "from-blue-500 to-blue-600" },
+                  { icon: <Instagram size={18} />, url: "https://www.instagram.com/wash_my_clothes?utm_source=qr&igsh=MWt3NXJ2OTE1a2x6bA==", color: "from-pink-500 to-purple-500" },
                   { icon: <Twitter size={18} />, url: "https://twitter.com", color: "from-blue-400 to-blue-500" },
                   { icon: <Mail size={18} />, url: "mailto:washmyclotheshyd@gmail.com", color: "from-red-500 to-red-600" },
                 ].map((social, index) => (
