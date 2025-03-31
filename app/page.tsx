@@ -1926,12 +1926,9 @@ export default function Home() {
                   <div>
                     <h4 className="font-bold text-gray-800 mb-2 text-lg">Working Hours</h4>
                     <div className="grid grid-cols-2 gap-x-6 gap-y-1">
-                      <p className="text-gray-600 font-medium">Monday - Friday:</p>
-                      <p className="text-gray-600">7:00 AM - 8:00 PM</p>
-                      <p className="text-gray-600 font-medium">Saturday:</p>
-                      <p className="text-gray-600">8:00 AM - 6:00 PM</p>
-                      <p className="text-gray-600 font-medium">Sunday:</p>
-                      <p className="text-gray-600">10:00 AM - 4:00 PM</p>
+                      <p className="text-gray-600 font-medium">Monday - Sunday:</p>
+                      <p className="text-gray-600">9:00 AM - 9:00 PM</p>
+
                     </div>
                   </div>
                 </motion.div>
