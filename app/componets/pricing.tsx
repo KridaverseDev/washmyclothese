@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search } from 'lucide-react';
+import { Search, Share2, Copy, Check } from 'lucide-react';
 
 const PricingSection = () => {
-
     const [activeTab, setActiveTab] = useState('laundry');
     const [searchTerm, setSearchTerm] = useState('');
+    const [highlightedItem, setHighlightedItem] = useState(null);
+    const [copied, setCopied] = useState(false);
 
     const priceData = {
         laundry: {
@@ -122,6 +123,59 @@ const PricingSection = () => {
         }
     };
 
+    // Handle URL parameters for deep linking
+    useEffect(() => {
+        // Parse URL hash parameters
+        const handleUrlParams = () => {
+            if (window.location.hash) {
+                const hash = window.location.hash.substring(1); // Remove the # character
+                const params = new URLSearchParams(hash);
+
+                // Get service category
+                const service = params.get('service');
+                if (service && priceData[service]) {
+                    setActiveTab(service);
+                }
+
+                // Get item to highlight
+                const item = params.get('item');
+                if (item) {
+                    setHighlightedItem(item);
+                    // If the item isn't immediately visible, we can set it as a search term
+                    setSearchTerm(item);
+                }
+            }
+        };
+
+        handleUrlParams();
+
+        // Listen for hash changes
+        window.addEventListener('hashchange', handleUrlParams);
+
+        return () => {
+            window.removeEventListener('hashchange', handleUrlParams);
+        };
+    }, []);
+
+    // Handle highlighting of shared items
+    useEffect(() => {
+        if (highlightedItem) {
+            // Scroll to the highlighted item
+            const element = document.getElementById(`item-${highlightedItem.replace(/\s+/g, '-').toLowerCase()}`);
+            if (element) {
+                setTimeout(() => {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                    // Flash animation
+                    element.classList.add('bg-blue-50');
+                    setTimeout(() => {
+                        element.classList.remove('bg-blue-50');
+                    }, 2000);
+                }, 500);
+            }
+        }
+    }, [highlightedItem, activeTab]);
+
     const filteredItems = () => {
         const items = priceData[activeTab].items;
         if (!searchTerm) return items;
@@ -135,14 +189,32 @@ const PricingSection = () => {
         return filtered;
     };
 
+    // Generate sharable URL for a service category or specific item
+    const generateShareUrl = (service, item = null) => {
+        const url = new URL(window.location.href.split('#')[0]);
+
+        let hash = `service=${service}`;
+        if (item) {
+            hash += `&item=${encodeURIComponent(item)}`;
+        }
+
+        return `${url.toString()}#${hash}`;
+    };
+
+    // Copy link to clipboard
+    const copyToClipboard = (url) => {
+        navigator.clipboard.writeText(url).then(() => {
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        });
+    };
+
     return (
         <section id="pricing" className="py-20 bg-gray-50 relative overflow-hidden">
-            {/* Background decorative elements */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-100 rounded-full opacity-30 transform translate-x-1/3 -translate-y-1/3"></div>
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-100 rounded-full opacity-30 transform -translate-x-1/3 translate-y-1/3"></div>
 
             <div className="container mx-auto px-4 relative z-10">
-                {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -179,7 +251,6 @@ const PricingSection = () => {
                     </motion.p>
                 </motion.div>
 
-             
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -189,22 +260,31 @@ const PricingSection = () => {
                 >
                     <div className="flex flex-wrap justify-center gap-3 mb-8">
                         {Object.keys(priceData).map((tab) => (
-                            <motion.button
-                                key={tab}
-                                onClick={() => setActiveTab(tab)}
-                                whileHover={{ scale: 1.05, y: -2 }}
-                                whileTap={{ scale: 0.98 }}
-                                className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${activeTab === tab
-                                    ? "bg-blue-600 text-white shadow-md"
-                                    : "bg-white text-gray-700 border border-gray-200 hover:bg-gray-50"
-                                    }`}
-                            >
-                                {priceData[tab].title}
-                            </motion.button>
+                            <div key={tab} className="relative">
+                                <motion.button
+                                    onClick={() => setActiveTab(tab)}
+                                    whileHover={{ scale: 1.05, y: -2 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${activeTab === tab
+                                        ? "bg-blue-600 text-white shadow-md"
+                                        : "bg-white text-gray-700 border border-gray-200 hover:bg-gray-50"
+                                        }`}
+                                >
+                                    {priceData[tab].title}
+                                </motion.button>
+
+                                {/* Share button for each category */}
+                                <button
+                                    onClick={() => copyToClipboard(generateShareUrl(tab))}
+                                    className="absolute -right-2 -top-2 bg-white text-blue-600 p-1 rounded-full shadow-sm border border-gray-200 hover:bg-blue-50 transition-colors"
+                                    title="Share this service category"
+                                >
+                                    <Share2 size={14} />
+                                </button>
+                            </div>
                         ))}
                     </div>
 
-                    {/* Search Bar */}
                     <div className="max-w-md mx-auto mb-8">
                         <div className="relative">
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -221,7 +301,14 @@ const PricingSection = () => {
                     </div>
                 </motion.div>
 
-              
+                {/* Share link copy notification */}
+                {copied && (
+                    <div className="fixed top-6 right-6 bg-green-100 border border-green-200 text-green-700 px-4 py-2 rounded-lg shadow-md flex items-center gap-2 z-50">
+                        <Check size={16} />
+                        <span>Link copied to clipboard!</span>
+                    </div>
+                )}
+
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={activeTab}
@@ -231,13 +318,23 @@ const PricingSection = () => {
                         transition={{ duration: 0.5 }}
                         className="bg-white rounded-xl shadow-xl overflow-hidden max-w-4xl mx-auto border border-gray-100"
                     >
-                        {/* Table Header */}
                         <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-6 text-white">
-                            <h3 className="text-xl font-bold">{priceData[activeTab].title}</h3>
-                            <p className="text-blue-100 mt-1">{priceData[activeTab].description}</p>
+                            <div className="flex justify-between items-center">
+                                <div>
+                                    <h3 className="text-xl font-bold">{priceData[activeTab].title}</h3>
+                                    <p className="text-blue-100 mt-1">{priceData[activeTab].description}</p>
+                                </div>
+                                <button
+                                    onClick={() => copyToClipboard(generateShareUrl(activeTab))}
+                                    className="flex items-center gap-1 bg-white bg-opacity-20 hover:bg-opacity-30 text-white rounded-lg px-3 py-1.5 transition-all"
+                                    title="Share this service category"
+                                >
+                                    <Share2 size={16} />
+                                    <span className="text-sm hidden sm:inline">Share Category</span>
+                                </button>
+                            </div>
                         </div>
 
-                        {/* Table Content */}
                         <div className="p-1 sm:p-4">
                             <div className="overflow-x-auto">
                                 <table className="w-full table-auto">
@@ -246,26 +343,39 @@ const PricingSection = () => {
                                             <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">Item</th>
                                             <th className="px-4 py-3 text-left text-sm font-semibold text-gray-600">Unit</th>
                                             <th className="px-4 py-3 text-right text-sm font-semibold text-gray-600">Price (₹)</th>
+                                            <th className="px-4 py-3 w-16"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {Object.entries(filteredItems()).map(([item, details], index) => (
                                             <motion.tr
                                                 key={item}
+                                                id={`item-${item.replace(/\s+/g, '-').toLowerCase()}`}
                                                 initial={{ opacity: 0 }}
                                                 animate={{ opacity: 1 }}
                                                 transition={{ duration: 0.3, delay: index * 0.03 }}
-                                                className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}
+                                                className={`${index % 2 === 0 ? "bg-white" : "bg-gray-50"} 
+                                                           ${highlightedItem === item ? "bg-blue-50 transition-colors duration-500" : ""} 
+                                                           hover:bg-blue-50 group transition-colors`}
                                             >
                                                 <td className="px-4 py-3 text-sm text-gray-800 border-t border-gray-100">{item}</td>
                                                 <td className="px-4 py-3 text-sm text-gray-600 border-t border-gray-100">{details.Type}</td>
                                                 <td className="px-4 py-3 text-sm text-gray-800 font-medium text-right border-t border-gray-100">₹{details.Price}</td>
+                                                <td className="px-4 py-3 text-sm border-t border-gray-100 text-right">
+                                                    <button
+                                                        onClick={() => copyToClipboard(generateShareUrl(activeTab, item))}
+                                                        className="opacity-0 group-hover:opacity-100 inline-flex p-1 rounded hover:bg-blue-100 text-blue-600 transition-all"
+                                                        title="Share this item"
+                                                    >
+                                                        <Share2 size={16} />
+                                                    </button>
+                                                </td>
                                             </motion.tr>
                                         ))}
 
                                         {Object.keys(filteredItems()).length === 0 && (
                                             <tr>
-                                                <td colSpan={3} className="px-4 py-8 text-center text-gray-500">
+                                                <td colSpan={4} className="px-4 py-8 text-center text-gray-500">
                                                     No items found matching your search. Try a different search term.
                                                 </td>
                                             </tr>
@@ -275,7 +385,6 @@ const PricingSection = () => {
                             </div>
                         </div>
 
-                        {/* Table Footer */}
                         <div className="bg-gray-50 px-6 py-4 border-t border-gray-100">
                             <p className="text-sm text-gray-500">
                                 * Prices may vary based on fabric type, stains, and size. Contact us for more details.
@@ -284,7 +393,6 @@ const PricingSection = () => {
                     </motion.div>
                 </AnimatePresence>
 
-                {/* Call to Action */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}

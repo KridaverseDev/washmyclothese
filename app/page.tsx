@@ -8,11 +8,19 @@ import { motion, AnimatePresence } from "framer-motion"
 import logo from "@/assets/app_logo.jpeg"
 import image from "@/assets/image.png"
 import PricingSection from "./componets/pricing"
+import washfold from "@/assets/wash&fold.jpg"
+import washfoldiron from "@/assets/wash&steamiro.jpg"
+import drycleaning from "@/assets/drycleaning.jpg"
+import shoeCleaning from "@/assets/shoecleaning.jpg"
+import toycleaning from "@/assets/toycleaning.jpg"
+import curtainCleaning from "@/assets/curtaincleaning.jpg"
+import carpet from "@/assets/caroet cleanin.png"
+
 export default function Home() {
   const [activeSection, setActiveSection] = useState("home")
   const [isScrolled, setIsScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const navItems = ["home", "about", "services", "location", "faq", "contact"]
+  const navItems = ["home", "about", "services", "pricing", "location", "faq", "contact"]
   const [selectedService, setSelectedService] = useState("All Services");
   const [openFAQ, setOpenFAQ] = useState(null);
   const currentYear = new Date().getFullYear();
@@ -914,7 +922,8 @@ export default function Home() {
         )}
       </AnimatePresence>
       <section id="about" className="py-16 bg-gray-50 relative overflow-hidden">
-        {/* Background pattern */}
+
+
         <div className="absolute inset-0 z-0 opacity-10">
           <motion.div
             initial={{ opacity: 0 }}
@@ -1098,17 +1107,17 @@ export default function Home() {
                 price: "From ₹60/kg",
                 description:
                   "Convenient and affordable wash & fold service for your everyday laundry. Fresh, clean, and neatly folded.",
-                image: "/images/wash-fold.jpg",
+                image: washfold,
                 icon: "🧺",
                 color: "blue",
                 gradient: "from-blue-500 to-blue-600"
               },
               {
                 title: "Wash & Steam Iron",
-                price: "From ₹99/item",
+                price: "From ₹99/kg",
                 description:
                   "Professional wash and steam iron service for a crisp, wrinkle-free finish, perfect for office wear and special occasions.",
-                image: "/images/wash-steam-iron.jpg",
+                image: washfoldiron,
                 icon: "👔",
                 color: "green",
                 gradient: "from-green-500 to-green-600"
@@ -1118,7 +1127,7 @@ export default function Home() {
                 price: "From ₹60/item",
                 description:
                   "Expert dry cleaning service to maintain the quality and longevity of your delicate and high-end fabrics.",
-                image: "/images/dry-cleaning.jpg",
+                image: drycleaning,
                 icon: "✨",
                 color: "purple",
                 gradient: "from-purple-500 to-purple-600"
@@ -1128,7 +1137,7 @@ export default function Home() {
                 price: "From ₹350/pair",
                 description:
                   "Restore the look of your favorite shoes with deep cleaning, stain removal, and expert care.",
-                image: "/images/shoe-cleaning.jpg",
+                image: shoeCleaning,
                 icon: "👟",
                 color: "orange",
                 gradient: "from-orange-500 to-orange-600"
@@ -1138,7 +1147,7 @@ export default function Home() {
                 price: "From ₹8/- Sqft (Single Layer)",
                 description:
                   "Freshen up your home with our professional curtain cleaning service, removing dust, stains, and odors.",
-                image: "/images/curtain-cleaning.jpg",
+                image: curtainCleaning,
                 icon: "🪟",
                 color: "amber",
                 gradient: "from-amber-500 to-amber-600"
@@ -1148,7 +1157,7 @@ export default function Home() {
                 price: "From ₹15/- Sqft (Double Layer)",
                 description:
                   "Freshen up your home with our professional curtain cleaning service, removing dust, stains, and odors.",
-                image: "/images/curtain-cleaning.jpg",
+                image: curtainCleaning,
                 icon: "🪟",
                 color: "amber",
                 gradient: "from-amber-500 to-amber-600"
@@ -1158,7 +1167,7 @@ export default function Home() {
                 price: "From ₹45/- Sqft",
                 description:
                   "Deep cleaning and stain removal for carpets to keep your space fresh, hygienic, and allergen-free.",
-                image: "/images/carpet-cleaning.jpg",
+                image: carpet,
                 icon: "🧶",
                 color: "indigo",
                 gradient: "from-indigo-500 to-indigo-600"
@@ -1168,7 +1177,7 @@ export default function Home() {
                 price: "From ₹250/item",
                 description:
                   "Sanitize and refresh your child's toys with our specialized cleaning service, ensuring hygiene and safety.",
-                image: "/images/toy-cleaning.jpg",
+                image: toycleaning,
                 icon: "🧸",
                 color: "pink",
                 gradient: "from-pink-500 to-pink-600"
@@ -1231,7 +1240,7 @@ export default function Home() {
                     POPULAR
                   </motion.div>
 
-                  {/* Price Tag */}
+
                   <motion.div
                     className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-lg shadow-md text-sm font-semibold z-10"
                     initial={{ opacity: 0, y: 10 }}
@@ -1243,9 +1252,9 @@ export default function Home() {
                   </motion.div>
                 </div>
 
-                {/* Content Section */}
+
                 <div className="p-6 relative">
-                  {/* Decorative Line */}
+
                   <motion.div
                     className={`h-0.5 w-12 bg-${service.color}-500 mb-4`}
                     initial={{ width: 0 }}
@@ -1274,7 +1283,7 @@ export default function Home() {
                     {service.description}
                   </motion.p>
 
-                  {/* Book Now Button */}
+
                   <motion.div
                     className="mt-2"
                     initial={{ opacity: 0, y: 10 }}
@@ -1316,7 +1325,6 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
-          {/* Enhanced Special Offer Section */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1324,9 +1332,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="mt-20 mb-16 text-center px-4"
           >
-            {/* Outer container with decorative elements */}
             <div className="relative max-w-4xl mx-auto">
-              {/* Decorative background elements */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
@@ -1342,7 +1348,6 @@ export default function Home() {
                 className="absolute -bottom-8 -right-8 w-16 h-16 bg-blue-50 rounded-full z-0 hidden md:block"
               />
 
-              {/* Main offer card */}
               <motion.div
                 className="relative bg-gradient-to-br from-white to-blue-50 border border-blue-200 rounded-2xl p-8 md:p-10 shadow-xl z-10"
                 whileHover={{
@@ -1352,7 +1357,6 @@ export default function Home() {
                 }}
                 transition={{ duration: 0.4 }}
               >
-                {/* Gift box ribbon decoration */}
                 <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-red-500 rounded-full flex items-center justify-center shadow-lg z-20">
                   <div className="absolute top-0 left-0 w-full h-full rounded-full bg-red-400 animate-pulse opacity-30"></div>
                   <motion.div
@@ -1514,10 +1518,8 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-      {/* service pricing */}
       <PricingSection />
       <section id="faq" className="py-20 md:py-24 bg-gradient-to-b from-white to-blue-50 relative overflow-hidden">
-        {/* Background decorative elements */}
         <div className="absolute inset-0 overflow-hidden">
           <svg className="absolute top-0 left-0 w-full h-full opacity-5" viewBox="0 0 100 100" preserveAspectRatio="none">
             <motion.path
@@ -1554,7 +1556,6 @@ export default function Home() {
         </div>
 
         <div className="container mx-auto px-4 relative z-10">
-          {/* Section header with enhanced animations */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
