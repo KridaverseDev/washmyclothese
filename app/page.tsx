@@ -3004,9 +3004,7 @@ export default function Home() {
               >
                 <ul className="space-y-3">
                   {[
-                    { day: "Monday - Friday", hours: "7:00 AM - 8:00 PM", highlight: true },
-                    { day: "Saturday", hours: "8:00 AM - 6:00 PM" },
-                    { day: "Sunday", hours: "10:00 AM - 4:00 PM" },
+                    { day: "Monday - Sunday", hours: "9:00 AM - 9:00 PM", highlight: true },
                   ].map((schedule, index) => (
                     <motion.li
                       key={index}
