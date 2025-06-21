@@ -14,7 +14,7 @@ const PricingSection = () => {
             description: "Professional washing and drying services",
             items: {
                 "Wash & Fold": { "Type": "kg", "Price": "79" },
-                "Wash And Steam Iron": { "Type": "kg", "Price": "99" },
+                "Wash And Steam Iron": { "Type": "kg", "Price": "90" },
                 "Premium Laundry": { "Type": "kg", "Price": "140" },
                 "Express Laundry": { "Type": "kg", "Price": "190" },
             }
