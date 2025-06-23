@@ -19,7 +19,11 @@ export const metadata: Metadata = {
   description:
     "Professional laundry services with wash & fold, dry cleaning, and more. Fast, efficient, and affordable.",
   generator: 'v0.dev',
-  // Add Facebook domain verification using other metadata
+  // Add Facebook domain verification here
+  verification: {
+    facebook: 'q5bsqtwp02qhah9aissnw4qpx8wdoc'
+  },
+  // Alternative method using other metadata
   other: {
     'facebook-domain-verification': 'q5bsqtwp02qhah9aissnw4qpx8wdoc'
   }
