@@ -3110,15 +3110,19 @@ export default function Home() {
               viewport={{ once: true }}
               className="flex gap-6 text-sm text-gray-500"
             >
-              {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map((item, index) => (
+            {[
+                { label: "Privacy Policy", path: "/privacy_policy" },
+                { label: "Terms and Conditions", path: "/terms_conditions" },
+                { label: "Refund Policy", path: "/refund_policy" },
+              ].map((item, index) => (
                 <motion.a
                   key={index}
                   whileHover={{ color: "#3B82F6" }}
                   transition={{ duration: 0.2 }}
-                  href="#"
+                  href={item.path}
                   className="hover:text-blue-300 transition-colors"
                 >
-                  {item}
+                  {item.label}
                 </motion.a>
               ))}
             </motion.div>
