@@ -3111,9 +3111,9 @@ export default function Home() {
               className="flex gap-6 text-sm text-gray-500"
             >
             {[
-                { label: "Privacy Policy", path: "/privacy-policy" },
-                { label: "Terms and Conditions", path: "/terms-conditions" },
-                { label: "Refund Policy", path: "/refund-policy" },
+                { label: "Privacy Policy", path: "./" },
+                { label: "Terms and Conditions", path: "/terms_conditions" },
+                { label: "Refund Policy", path: "/refund_policy" },
               ].map((item, index) => (
                 <motion.a
                   key={index}

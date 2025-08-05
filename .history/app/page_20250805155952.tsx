@@ -3113,7 +3113,7 @@ export default function Home() {
             {[
                 { label: "Privacy Policy", path: "/privacy-policy" },
                 { label: "Terms and Conditions", path: "/terms-conditions" },
-                { label: "Refund Policy", path: "/refund-policy" },
+                { label: "Refund Policy", path: "/refund_policy" },
               ].map((item, index) => (
                 <motion.a
                   key={index}
