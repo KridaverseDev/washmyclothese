@@ -914,7 +914,97 @@ export default function Home() {
       </section>
 
       {/* Enhanced Promotional Toast Notification */}
+      <AnimatePresence>
+        {toastVisible && (
+          <motion.div
+            initial={{ opacity: 0, y: -100, x: "-50%" }}
+            animate={{ opacity: 1, y: 0, x: "-50%" }}
+            exit={{ opacity: 0, y: -100, x: "-50%" }}
+            transition={{
+              type: "spring",
+              stiffness: 100,
+              damping: 15,
+            }}
+            className="fixed top-24 left-1/2 transform -translate-x-1/2 z-50 max-w-md w-full md:w-auto"
+          >
+            <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-5 py-4 rounded-xl shadow-2xl border border-blue-400 overflow-hidden relative">
+              {/* Background animation effect */}
+              <motion.div
+                className="absolute inset-0 opacity-20"
+                animate={{
+                  backgroundPosition: ["0% 0%", "100% 100%"],
+                }}
+                transition={{
+                  duration: 10,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                  ease: "linear",
+                }}
+                style={{
+                  backgroundImage:
+                    "radial-gradient(circle, rgba(255,255,255,0.8) 10%, transparent 10%)",
+                  backgroundSize: "20px 20px",
+                }}
+              />
 
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-3 relative z-10">
+                {/* Discount message with animated emoji */}
+                <div className="flex items-center gap-2">
+                  <motion.div
+                    animate={{
+                      rotate: [0, 10, 0, -10, 0],
+                      scale: [1, 1.2, 1, 1.2, 1],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatDelay: 3,
+                    }}
+                    className="text-2xl"
+                  >
+                    🎉
+                  </motion.div>
+
+                  <motion.div
+                    animate={{
+                      rotate: [0, -10, 0, 10, 0],
+                      scale: [1, 1.2, 1, 1.2, 1],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatDelay: 3,
+                      delay: 0.5,
+                    }}
+                    className="text-2xl"
+                  >
+                    🎉
+                  </motion.div>
+                </div>
+
+                {/* Close button */}
+                <motion.button
+                  whileHover={{
+                    scale: 1.1,
+                    backgroundColor: "rgba(255,255,255,0.2)",
+                  }}
+                  whileTap={{ scale: 0.9 }}
+                  onClick={() => setToastVisible(false)}
+                  className="absolute -top-1 -right-1 w-6 h-6 rounded-full flex items-center justify-center text-white hover:bg-white/10 transition-colors"
+                >
+                  <svg className="w-4 h-4" viewBox="0 0 20 20" fill="black">
+                    <path
+                      fillRule="evenodd"
+                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </motion.button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <section id="about" className="py-16 bg-gray-50 relative overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-10">
           <motion.div
@@ -1110,7 +1200,7 @@ export default function Home() {
             {[
               {
                 title: "Wash & Fold",
-                price: "From ₹69/kg",
+                price: "From ₹60/kg",
                 description:
                   "Convenient and affordable wash & fold service for your everyday laundry. Fresh, clean, and neatly folded.",
                 image: washfold,
@@ -1333,6 +1423,236 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, type: "spring", stiffness: 50 }}
+            viewport={{ once: true }}
+            className="mt-20 mb-16 text-center px-4"
+          >
+            <div className="relative max-w-4xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="absolute -top-10 -left-10 w-20 h-20 bg-blue-100 rounded-full z-0 hidden md:block"
+              />
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="absolute -bottom-8 -right-8 w-16 h-16 bg-blue-50 rounded-full z-0 hidden md:block"
+              />
+
+              <motion.div
+                className="relative bg-gradient-to-br from-white to-blue-50 border border-blue-200 rounded-2xl p-8 md:p-10 shadow-xl z-10"
+                whileHover={{
+                  boxShadow: "0 25px 50px -12px rgba(59, 130, 246, 0.25)",
+                  y: -5,
+                  transition: { duration: 0.4 },
+                }}
+                transition={{ duration: 0.4 }}
+              >
+                <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-red-500 rounded-full flex items-center justify-center shadow-lg z-20">
+                  <div className="absolute top-0 left-0 w-full h-full rounded-full bg-red-400 animate-pulse opacity-30"></div>
+                  <motion.div
+                    initial={{ scale: 0, rotate: -180 }}
+                    whileInView={{ scale: 1, rotate: 0 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 260,
+                      damping: 20,
+                      delay: 0.4,
+                    }}
+                    viewport={{ once: true }}
+                    className="text-3xl"
+                  >
+                    🎁
+                  </motion.div>
+                </div>
+
+                {/* Offer header with animated underline */}
+                <div className="relative inline-block mb-6">
+                  <motion.h3
+                    className="text-3xl font-bold text-gray-800 mb-2"
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
+                    viewport={{ once: true }}
+                  >
+                    Exclusive Special Offers
+                  </motion.h3>
+                  <motion.div
+                    className="h-1 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full"
+                    initial={{ width: 0 }}
+                    whileInView={{ width: "100%" }}
+                    transition={{ duration: 0.8, delay: 0.7 }}
+                    viewport={{ once: true }}
+                  />
+                </div>
+
+                {/* Service-specific offers tabs */}
+                <motion.div
+                  className="flex flex-wrap justify-center gap-2 mb-8"
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  {Object.keys(serviceOffers).map((service) => (
+                    <motion.button
+                      key={service}
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      whileTap={{ scale: 0.98 }}
+                      transition={{ duration: 0.2 }}
+                      onClick={() => setSelectedService(service)}
+                      className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                        selectedService === service
+                          ? "bg-blue-600 text-white shadow-md"
+                          : "bg-white text-gray-700 border border-gray-200 hover:bg-gray-50"
+                      }`}
+                    >
+                      {service}
+                    </motion.button>
+                  ))}
+                </motion.div>
+
+                {/* Main offer content - AnimatePresence for smooth transitions between offers */}
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={selectedService}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3 }}
+                    className="bg-white rounded-xl p-6 shadow-inner border border-blue-100 mb-8"
+                  >
+                    <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
+                      {/* Left side - offer details */}
+                      <div className="flex-1 text-left">
+                        <div className="mb-4">
+                          <h4 className="text-xl font-bold text-gray-800 mb-1">
+                            {currentOffer.title}
+                          </h4>
+                          <p className="text-gray-500 text-sm">
+                            {currentOffer.subtitle}
+                          </p>
+                        </div>
+
+                        <p
+                          className="text-gray-600 mb-4"
+                          dangerouslySetInnerHTML={{
+                            __html: currentOffer.description,
+                          }}
+                        />
+
+                        <div className="flex flex-col sm:flex-row gap-3 mb-2">
+                          {currentOffer.benefits.map((benefit, index) => (
+                            <div
+                              key={index}
+                              className="flex items-center gap-2 text-green-600"
+                            >
+                              <svg
+                                className="w-5 h-5"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                              <span className="text-sm">{benefit}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Right side - promo code */}
+                      <div className="flex flex-col items-center justify-center">
+                        <div className="text-sm font-medium text-gray-500 mb-2">
+                          Use Promo Code:
+                        </div>
+                        <motion.div
+                          className={`bg-gradient-to-r ${currentOffer.gradient} text-white px-6 py-4 rounded-lg font-bold text-xl tracking-wider shadow-lg`}
+                          whileHover={{
+                            scale: 1.05,
+                            boxShadow:
+                              "0 15px 30px -5px rgba(59, 130, 246, 0.4)",
+                            transition: { duration: 0.3 },
+                          }}
+                          whileTap={{ scale: 0.98 }}
+                        >
+                          {currentOffer.code}
+                        </motion.div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* Action buttons */}
+                <motion.div
+                  className="flex flex-col sm:flex-row justify-center gap-4"
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 1 }}
+                  viewport={{ once: true }}
+                >
+                  <motion.a
+                    whileHover={{
+                      scale: 1.03,
+                      boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.5)",
+                    }}
+                    whileTap={{ scale: 0.97 }}
+                    href={`https://wa.me/+918712326333?text=${encodeURIComponent(
+                      currentOffer.cta
+                    )}`}
+                    className="flex items-center justify-center gap-2 bg-gradient-to-r from-green-500 to-green-600 text-white py-3 px-6 rounded-lg shadow-md font-medium"
+                  >
+                    <MessageSquare size={18} />
+                    <span>Book via WhatsApp</span>
+                  </motion.a>
+
+                  <motion.a
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
+                    href="tel:+918712326333"
+                    className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white py-3 px-6 rounded-lg shadow-md font-medium"
+                  >
+                    <Phone size={18} />
+                    <span>Call to Book Now</span>
+                  </motion.a>
+                </motion.div>
+
+                {/* Expiration notification */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 1.1 }}
+                  viewport={{ once: true }}
+                  className="mt-6 text-sm text-gray-500 flex items-center justify-center gap-2"
+                >
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <span>Limited time offer. Expires soon!</span>
+                </motion.div>
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
       </section>
       <PricingSection />
